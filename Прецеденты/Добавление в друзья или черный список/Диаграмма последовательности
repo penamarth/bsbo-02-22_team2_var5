@@ -1,0 +1,26 @@
+actor User
+
+participant "FriendsList" as FL
+participant "BlockedList" as BL
+participant "Friend" as F
+participant "BlockedUser " as BU
+
+User  -> FL : AddFriend(Friend)
+FL -> F : new Friend(userName)
+FL -> FL : AddFriend(friend)
+FL -> User : "Added friend: userName"
+
+User  -> BL : AddBlockedUser (BlockedUser )
+BL -> BU : new BlockedUser (userName)
+BL -> BL : AddBlockedUser (blockedUser )
+BL -> User : "Blocked user: userName"
+
+User  -> FL : DisplayFriends()
+FL -> User : "List of Friends:"
+FL -> F : DisplayInfo()
+F -> F : Console.WriteLine("Friend: userName")
+
+User  -> BL : DisplayBlockedUsers()
+BL -> User : "List of Blocked Users:"
+BL -> BU : DisplayInfo()
+BU -> BU : Console.WriteLine("Blocked: userName")
